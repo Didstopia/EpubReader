@@ -4,7 +4,7 @@ language: csharp
 # Mono versions to test against
 mono:
   - latest
-  - 5.0.1
+  #- 5.0.1
 
 # Install .NET Core
 dotnet: 1.0.1
@@ -23,7 +23,7 @@ osx_image: xcode8.3
 # Global environment variables
 env:
 - BUILD_CONFIG="Debug" CACHE_NAME="Debug Build Cache"
-- BUILD_CONFIG="Release" CACHE_NAME="Release Build Cache"
+#- BUILD_CONFIG="Release" CACHE_NAME="Release Build Cache"
 
 # Work around NuGet issue #2163
 # https://github.com/NuGet/Home/issues/2163
@@ -41,7 +41,6 @@ script:
 branches:
   only:
     - master
-    - development
 
 # Caching
 cache:
