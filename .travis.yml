@@ -7,9 +7,7 @@ mono:
   #- 5.0.1
 
 # .NET Core versions to test against
-dotnet:
-  - 1.0.4
-  - 2.0.0-preview1-005977
+dotnet: 2.0.0-preview1-005977
 
 # OS's to test against
 os:
@@ -20,7 +18,7 @@ os:
 dist: trusty
 
 # Default Xcode/macOS version (macOS 10.12)
-osx_image: xcode8.3
+#osx_image: xcode8.3
 
 # Global environment variables
 env:
