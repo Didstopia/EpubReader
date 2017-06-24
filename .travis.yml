@@ -1,5 +1,5 @@
  # Main language/toolchain
-language: - csharp
+language: csharp
 
 # Mono versions to test against
 mono:
