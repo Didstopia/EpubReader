@@ -1,29 +1,44 @@
  # Main language/toolchain
-language:
-  - csharp
+language: csharp
 
-# Mono versions to test against
-mono:
-  - latest
-  - 5.0.1
+# Mono is not required for this project
+mono: none
 
-# Enable running inside a container (container-based infrastructure)
-sudo:
-  - false
+# Install .NET Core
+dotnet: 1.0.4
+
+# Operating systems to test against
+os:
+  - linux
+  - osx
+
+# Disable sudo to enable running inside a container
+sudo: false
 
 # Default linux distro (Ubuntu 14.04)
-dist:
-  - trusty
+dist: trusty
+
+# Default Xcode/macOS version (macOS 10.12)
+osx_image: xcode8.3
 
 # Global environment variables
 env:
-- MSBUILD_CONFIG="Debug" CACHE_NAME="Debug Build Cache"
-- MSBUILD_CONFIG="Release" CACHE_NAME="Release Build Cache"
+- BUILD_CONFIG="Debug" CACHE_NAME="Debug Build Cache" DOTNET_CLI_TELEMETRY_OPTOUT=1
+- BUILD_CONFIG="Release" CACHE_NAME="Release Build Cache" DOTNET_CLI_TELEMETRY_OPTOUT=1
+
+# Install dependencies
+install:
+  - bash <(curl -s https://raw.githubusercontent.com/dotnet/cli/master/scripts/obtain/dotnet-install.sh)
+  - bash <(curl -s https://raw.githubusercontent.com/dotnet/cli/master/scripts/obtain/dotnet-install.sh) --channel "master" --version "latest"
+
+# Setup for the build script
+before_script:
+  - export PATH=$HOME/.dotnet:$PATH
 
 # Build script
 script:
-  - nuget restore
-  - msbuild /p:Configuration=${MSBUILD_CONFIG} /t:Restore,Rebuild
+  - dotnet restore
+  - dotnet build --configuration ${BUILD_CONFIG}
   - dotnet test Didstopia.EpubReader.Tests
   - dotnet pack
 
@@ -32,7 +47,8 @@ branches:
   only:
     - master
 
-# Caching
+# Setup caching
 cache:
   directories:
   - $HOME/.nuget/packages
+  - $HOME/.dotnet/NuGetFallbackFolder
