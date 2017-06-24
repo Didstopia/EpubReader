@@ -17,7 +17,7 @@ os:
   #- osx
 
 # Disable sudo to enable running inside a container
-#sudo: false
+sudo: false
 
 # Default linux distro (Ubuntu 14.04)
 dist: trusty
