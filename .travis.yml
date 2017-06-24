@@ -7,9 +7,9 @@ mono:
   #- 5.0.1
 
 # .NET Core versions to test against
-dotnet:
-- 1.0.4
-- 2.0.0-preview1-005977
+#dotnet:
+#- 1.0.4
+#- 2.0.0-preview1-005977
 
 # OS's to test against
 os:
@@ -29,6 +29,12 @@ dist: trusty
 env:
 - BUILD_CONFIG="Debug" CACHE_NAME="Debug Build Cache" DOTNET_CLI_TELEMETRY_OPTOUT=1
 #- BUILD_CONFIG="Release" CACHE_NAME="Release Build Cache" DOTNET_CLI_TELEMETRY_OPTOUT=1
+
+# Install script
+install:
+  - bash <(curl -s https://raw.githubusercontent.com/dotnet/cli/master/scripts/obtain/dotnet-install.sh)
+  - bash <(curl -s https://raw.githubusercontent.com/dotnet/cli/master/scripts/obtain/dotnet-install.sh) --channel "master" --version "latest"
+  - ln -s $HOME/.dotnet/dotnet /usr/local/bin/dotnet
 
 # Build script
 script:
