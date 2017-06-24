@@ -1,7 +1,8 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp1.1</TargetFramework>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <RuntimeFrameworkVersion>2.0.0-*</RuntimeFrameworkVersion>
     <ReleaseVersion>1.0.0-beta1</ReleaseVersion>
   </PropertyGroup>
 
@@ -17,14 +18,14 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Didstopia.EpubReader\Didstopia.EpubReader.csproj" />
-  </ItemGroup>
-  <ItemGroup>
     <None Update="Samples\TheThreeBears.epub">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
     <None Update="xunit.runner.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Didstopia.EpubReader\Didstopia.EpubReader.csproj" />
   </ItemGroup>
 </Project>

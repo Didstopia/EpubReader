@@ -10,7 +10,7 @@ namespace Didstopia.EpubReader.Tests
     {
         #region Constants
         private const string SampleBookLocalPath = "Samples/TheThreeBears.epub";
-        private const string SampleBookRemotePath = "http://bobdc.s3.amazonaws.com/books/epubkidsbooks/TheThreeBears.epub";
+        private const string SampleBookRemotePath = "https://github.com/IDPF/epub3-samples/releases/download/20170606/wasteland.epub";
         #endregion
 
         #region Tests
