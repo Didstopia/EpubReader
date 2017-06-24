@@ -17,7 +17,7 @@ os:
   #- osx
 
 # Disable sudo to enable running inside a container
-sudo: false
+#sudo: false
 
 # Default linux distro (Ubuntu 14.04)
 dist: trusty
@@ -29,6 +29,10 @@ dist: trusty
 env:
 - BUILD_CONFIG="Debug" CACHE_NAME="Debug Build Cache" DOTNET_CLI_TELEMETRY_OPTOUT=1
 #- BUILD_CONFIG="Release" CACHE_NAME="Release Build Cache" DOTNET_CLI_TELEMETRY_OPTOUT=1
+
+# Install apt dependencies
+before_install:
+  - sudo apt-get install libunwind
 
 # Install script
 install:
