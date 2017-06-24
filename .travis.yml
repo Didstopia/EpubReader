@@ -2,6 +2,7 @@
 language: csharp
 
 # Mono versions to test against
+mono: none
 #mono:
   #- latest
   #- 5.0.1
