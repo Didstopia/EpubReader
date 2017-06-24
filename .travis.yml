@@ -7,12 +7,17 @@ mono:
   #- 5.0.1
 
 # .NET Core versions to test against
-dotnet: 2.0.0-preview1-005977
+dotnet:
+- 1.0.4
+- 2.0.0-preview1-005977
 
 # OS's to test against
 os:
   - linux
   #- osx
+
+# Disable sudo to enable running inside a container
+sudo: false
 
 # Default linux distro (Ubuntu 14.04)
 dist: trusty
@@ -22,21 +27,17 @@ dist: trusty
 
 # Global environment variables
 env:
-- BUILD_CONFIG="Debug" CACHE_NAME="Debug Build Cache"
-#- BUILD_CONFIG="Release" CACHE_NAME="Release Build Cache"
-
-## Work around NuGet issue #2163
-## https://github.com/NuGet/Home/issues/2163
-before_install:
-  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then echo "Setting ulimit to 1024"; ulimit -n 1024; fi
+- BUILD_CONFIG="Debug" CACHE_NAME="Debug Build Cache" DOTNET_CLI_TELEMETRY_OPTOUT=1
+#- BUILD_CONFIG="Release" CACHE_NAME="Release Build Cache" DOTNET_CLI_TELEMETRY_OPTOUT=1
 
 # Build script
 script:
   - dotnet restore
   - dotnet build --configuration ${BUILD_CONFIG}
-  - dotnet test Didstopia.EpubReader.Tests/Didstopia.EpubReader.Tests.csproj
+  #- dotnet test Didstopia.EpubReader.Tests/Didstopia.EpubReader.Tests.csproj
+  - dotnet test Didstopia.EpubReader.Tests
   ## NuGet package creation seems to be broken on .NET 1.x, so we'd need to install 2.x to get it working again
-  #- dotnet pack
+  - dotnet pack
 
 # Only build the master branch
 branches:
@@ -47,3 +48,4 @@ branches:
 cache:
   directories:
   - $HOME/.nuget/packages
+  - $HOME/.dotnet/NuGetFallbackFolder
