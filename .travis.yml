@@ -1,32 +1,39 @@
  # Main language/toolchain
-language:
-  - csharp
+language: - csharp
 
 # Mono versions to test against
 mono:
   - latest
   - 5.0.1
 
-# Enable running inside a container (container-based infrastructure)
-sudo:
-  - false
-
 # Install .NET Core
-dotnet: 2.1.0-preview1-006547
+dotnet: 1.0.1
+
+# OS's to test against
+os:
+  - linux
+  - osx
 
 # Default linux distro (Ubuntu 14.04)
-dist:
-  - trusty
+dist: trusty
+
+# Default Xcode/macOS version (macOS 10.12)
+osx_image: xcode8.3
 
 # Global environment variables
 env:
 - BUILD_CONFIG="Debug" CACHE_NAME="Debug Build Cache"
 - BUILD_CONFIG="Release" CACHE_NAME="Release Build Cache"
 
+# Work around NuGet issue #2163
+# https://github.com/NuGet/Home/issues/2163
+before_install:
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then echo "Setting ulimit to 1024"; ulimit -n 1024; fi
+
 # Build script
 script:
   - dotnet restore
-  - dotnet build --configuration ${BUILD_CONFIG} EpubReader.sln
+  - dotnet build --configuration ${BUILD_CONFIG}
   - dotnet test Didstopia.EpubReader.Tests/Didstopia.EpubReader.Tests.csproj
   - dotnet pack
 
