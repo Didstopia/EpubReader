@@ -43,12 +43,12 @@ install:
 
 # Build script
 script:
-  - dotnet restore
-  - dotnet build --configuration ${BUILD_CONFIG}
+  - ~/.dotnet/dotnet restore
+  - ~/.dotnet/dotnet build --configuration ${BUILD_CONFIG}
   #- dotnet test Didstopia.EpubReader.Tests/Didstopia.EpubReader.Tests.csproj
-  - dotnet test Didstopia.EpubReader.Tests
+  - ~/.dotnet/dotnet test Didstopia.EpubReader.Tests
   ## NuGet package creation seems to be broken on .NET 1.x, so we'd need to install 2.x to get it working again
-  - dotnet pack
+  - ~/.dotnet/dotnet pack
 
 # Only build the master branch
 branches:
