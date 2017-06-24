@@ -12,9 +12,7 @@ sudo:
   - false
 
 # Install .NET Core
-dotnet:
-- 1.0.4
-- latest
+dotnet: 2.1.0-preview1-006547
 
 # Default linux distro (Ubuntu 14.04)
 dist:
@@ -22,13 +20,13 @@ dist:
 
 # Global environment variables
 env:
-- MSBUILD_CONFIG="Debug" CACHE_NAME="Debug Build Cache"
-- MSBUILD_CONFIG="Release" CACHE_NAME="Release Build Cache"
+- BUILD_CONFIG="Debug" CACHE_NAME="Debug Build Cache"
+- BUILD_CONFIG="Release" CACHE_NAME="Release Build Cache"
 
 # Build script
 script:
-  - nuget restore
-  - msbuild /p:Configuration=${MSBUILD_CONFIG} /t:Restore,Rebuild
+  - dotnet restore
+  - dotnet build --configuration ${BUILD_CONFIG} EpubReader.sln
   - dotnet test Didstopia.EpubReader.Tests/Didstopia.EpubReader.Tests.csproj
   - dotnet pack
 
