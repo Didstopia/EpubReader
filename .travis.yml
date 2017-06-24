@@ -41,14 +41,17 @@ install:
   - bash <(curl -s https://raw.githubusercontent.com/dotnet/cli/master/scripts/obtain/dotnet-install.sh) --channel "master" --version "latest"
   #- ln -s $HOME/.dotnet/dotnet /usr/local/bin/dotnet
 
+before_script:
+  - export PATH=$HOME/.dotnet:$PATH
+
 # Build script
 script:
-  - ~/.dotnet/dotnet restore
-  - ~/.dotnet/dotnet build --configuration ${BUILD_CONFIG}
+  - dotnet restore
+  - dotnet build --configuration ${BUILD_CONFIG}
   #- dotnet test Didstopia.EpubReader.Tests/Didstopia.EpubReader.Tests.csproj
-  - ~/.dotnet/dotnet test Didstopia.EpubReader.Tests
+  - dotnet test Didstopia.EpubReader.Tests
   ## NuGet package creation seems to be broken on .NET 1.x, so we'd need to install 2.x to get it working again
-  - ~/.dotnet/dotnet pack
+  - dotnet pack
 
 # Only build the master branch
 branches:
