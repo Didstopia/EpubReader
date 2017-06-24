@@ -43,6 +43,14 @@ script:
   - dotnet test --configuration ${BUILD_CONFIG} Didstopia.EpubReader.Tests
   - dotnet pack --configuration ${BUILD_CONFIG}
 
+# Deployment script
+deploy:
+  provider: script
+  script: .scripts/deploy.sh $BUILD_CONFIG $NUGET_API_KEY
+  skip_cleanup: true
+  on:
+    tags: true
+
 # Only build the master branch
 branches:
   only:
