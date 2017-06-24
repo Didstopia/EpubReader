@@ -30,16 +30,11 @@ namespace Didstopia.EpubReader
         {
             if (UrlUtils.FileIsUrl(filePath))
             {
-                if (await UrlUtils.FileExistsAtUrl(filePath))
-                {
-                    var localFilePath = await UrlUtils.UrlToFile(filePath);
-                    if (string.IsNullOrEmpty(localFilePath))
-                        throw new FileNotFoundException("Specified remote ePub file could not be downloaded to local filesystem.", filePath);
-                    
-                    filePath = localFilePath;
-                }
-                else
-                    throw new FileNotFoundException("Specified remote ePub file not found.", filePath);
+                var localFilePath = await UrlUtils.UrlToFile(filePath);
+                if (string.IsNullOrEmpty(localFilePath))
+                    throw new FileNotFoundException("Specified remote ePub file could not be downloaded to local filesystem.", filePath);
+
+                filePath = localFilePath;
             }
 
             if (!File.Exists(filePath))

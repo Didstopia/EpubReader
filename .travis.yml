@@ -28,8 +28,9 @@ env:
 
 # Install dependencies
 install:
-  - bash <(curl -s https://raw.githubusercontent.com/dotnet/cli/master/scripts/obtain/dotnet-install.sh)
-  - bash <(curl -s https://raw.githubusercontent.com/dotnet/cli/master/scripts/obtain/dotnet-install.sh) --channel "master" --version "latest"
+  - bash <(curl -s https://raw.githubusercontent.com/dotnet/cli/master/scripts/obtain/dotnet-install.sh) --channel "LTS" --version "latest"
+  - bash <(curl -s https://raw.githubusercontent.com/dotnet/cli/master/scripts/obtain/dotnet-install.sh) --channel "2.0" --version "2.0.0-preview3-006540"
+  - bash <(curl -s https://raw.githubusercontent.com/dotnet/cli/master/scripts/obtain/dotnet-install.sh) --channel "2.0" --version "latest"
 
 # Setup for the build script
 before_script:
@@ -39,8 +40,8 @@ before_script:
 script:
   - dotnet restore
   - dotnet build --configuration ${BUILD_CONFIG}
-  - dotnet test Didstopia.EpubReader.Tests
-  - dotnet pack
+  - dotnet test --configuration ${BUILD_CONFIG} Didstopia.EpubReader.Tests
+  - dotnet pack --configuration ${BUILD_CONFIG}
 
 # Only build the master branch
 branches:
