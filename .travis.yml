@@ -12,7 +12,9 @@ sudo:
   - false
 
 # Install .NET Core
-dotnet: 1.0.4
+dotnet:
+- 1.0.4
+- latest
 
 # Default linux distro (Ubuntu 14.04)
 dist:
@@ -27,7 +29,7 @@ env:
 script:
   - nuget restore
   - msbuild /p:Configuration=${MSBUILD_CONFIG} /t:Restore,Rebuild
-  - dotnet test Didstopia.EpubReader.Tests
+  - dotnet test Didstopia.EpubReader.Tests/Didstopia.EpubReader.Tests.csproj
   - dotnet pack
 
 # Only build the master branch
