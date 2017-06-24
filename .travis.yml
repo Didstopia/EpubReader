@@ -39,7 +39,7 @@ env:
 install:
   - bash <(curl -s https://raw.githubusercontent.com/dotnet/cli/master/scripts/obtain/dotnet-install.sh)
   - bash <(curl -s https://raw.githubusercontent.com/dotnet/cli/master/scripts/obtain/dotnet-install.sh) --channel "master" --version "latest"
-  - ln -s $HOME/.dotnet/dotnet /usr/local/bin/dotnet
+  #- ln -s $HOME/.dotnet/dotnet /usr/local/bin/dotnet
 
 # Build script
 script:
