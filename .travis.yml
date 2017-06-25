@@ -51,10 +51,10 @@ jobs:
       deploy:
         provider: script
         script: .scripts/deploy.sh $BUILD_CONFIG $NUGET_API_KEY
-        env: BUILD_CONFIG="Release" DOTNET_CLI_TELEMETRY_OPTOUT=1
-        os: linux
         #on:
         #  tags: true
+      env: BUILD_CONFIG="Release" DOTNET_CLI_TELEMETRY_OPTOUT=1
+      os: linux
 
 # Only build the master branch
 branches:
