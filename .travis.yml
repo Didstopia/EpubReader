@@ -43,6 +43,19 @@ script:
   - dotnet test --configuration ${BUILD_CONFIG} Didstopia.EpubReader.Tests
   - dotnet pack --configuration ${BUILD_CONFIG}
 
+# Additional jobs that run after tests
+jobs:
+  include:
+    - stage: deploy
+      env: BUILD_CONFIG="Release" DOTNET_CLI_TELEMETRY_OPTOUT=1
+      os: linux
+      script: skip
+      deploy:
+        provider: script
+        script: .scripts/deploy.sh $BUILD_CONFIG $NUGET_API_KEY
+        on:
+          tags: true
+
 # Only build the master branch
 branches:
   only:
