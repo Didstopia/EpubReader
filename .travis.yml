@@ -65,4 +65,4 @@ branches:
 cache:
   directories:
   - $HOME/.nuget/packages
-  - $HOME/.dotnet/NuGetFallbackFolder
+  - $HOME/.dotnet
