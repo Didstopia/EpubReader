@@ -6,7 +6,7 @@
     <RootNamespace>Didstopia.EpubReader</RootNamespace>
     <AssemblyName>Didstopia.EpubReader</AssemblyName>
     <PackageId>Didstopia.EpubReader</PackageId>
-    <PackageVersion>1.0.0-beta3</PackageVersion>
+    <PackageVersion>1.0.0-beta4</PackageVersion>
     <Authors>Didstopia</Authors>
     <DevelopmentDependency>true</DevelopmentDependency>
     <NeutralLanguage>en-US</NeutralLanguage>
@@ -20,7 +20,7 @@
     <Description>A .NET Standard library for reading ePub files.
 
 NOTE: This is an extensively modified fork of Didstopia.EpubReader (https://github.com/versfx/EpubReader). This fork aims to be a cross-platform and modern library, using latest technologies and techniques, such as .NET Standard.</Description>
-    <ReleaseVersion>1.0.0-beta3</ReleaseVersion>
+    <ReleaseVersion>1.0.0-beta4</ReleaseVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
@@ -28,7 +28,7 @@ NOTE: This is an extensively modified fork of Didstopia.EpubReader (https://gith
     <DebugType>pdbonly</DebugType>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="CoreCompat.System.Drawing" Version="1.0.0-beta006" />
     <PackageReference Include="NuGet.Build.Packaging" Version="0.1.323" />
+    <PackageReference Include="CoreCompat.System.Drawing.v2" Version="5.2.0-preview1-r131" />
   </ItemGroup>
 </Project>
