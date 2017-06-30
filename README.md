@@ -1,128 +1,24 @@
-# ePub Reader for .NET Standard
+# ePub Reader for .NET Standard 2.0
 
 [![Build Status](https://travis-ci.org/Didstopia/EpubReader.svg?branch=master)](https://travis-ci.org/Didstopia/EpubReader)
 [![NuGet](https://img.shields.io/nuget/dt/Didstopia.EpubReader.svg)](https://www.nuget.org/packages/Didstopia.EpubReader)
 
-A .NET Standard library for reading ePub files.
+A .NET Standard 2.0 library for reading ePub files.
 
-**NOTE:** This is an extensively modified fork of [versfx's EpubReader](https://github.com/versfx/EpubReader).
-This fork aims to be a cross-platform and modern library, using latest technologies such as .NET Standard.
+**DISCLAIMER:** This is a modified fork based on [EpubReader by versfx](https://github.com/versfx/EpubReader).
 
-## Example
+## What works vs. doesn't work
 
-**NOTE:** The examples below may not be up to date, but will be fixed as this fork matures and is deemed stable for production use.
+- [x] Everything in regards to reading and parsing ePub files
 
-```csharp
-// Opens a book and reads all of its content into the memory
-EpubBook epubBook = EpubReader.ReadBook("alice_in_wonderland.epub");
+It's important to note that this is **prerelease software**, meaning some things work while others do not.
 
-            
-// COMMON PROPERTIES
+If you come across a feature that you know should work (but doesn't), please submit an issue or pull request so we can slowly move towards a stable release.
 
-// Book's title
-string title = epubBook.Title;
+## Usage
 
-// Book's authors (comma separated list)
-string author = epubBook.Author;
+See the [original project's README.md](https://github.com/versfx/EpubReader/blob/master/README.md).
 
-// Book's authors (list of authors names)
-List<string> authors = epubBook.AuthorList;
+## Licenses
 
-// Book's cover image (null if there is no cover)
-Image coverImage = epubBook.CoverImage;
-
-            
-// CHAPTERS
-
-// Enumerating chapters
-foreach (EpubChapter chapter in epubBook.Chapters)
-{
-    // Title of chapter
-    string chapterTitle = chapter.Title;
-                
-    // HTML content of current chapter
-    string chapterHtmlContent = chapter.HtmlContent;
-
-    // Nested chapters
-    List<EpubChapter> subChapters = chapter.SubChapters;
-}
-
-            
-// CONTENT
-
-// Book's content (HTML files, stlylesheets, images, fonts, etc.)
-EpubContent bookContent = epubBook.Content;
-
-            
-// IMAGES
-
-// All images in the book (file name is the key)
-Dictionary<string, EpubByteContentFile> images = bookContent.Images;
-
-EpubByteContentFile firstImage = images.Values.First();
-
-// Content type (e.g. EpubContentType.IMAGE_JPEG, EpubContentType.IMAGE_PNG)
-EpubContentType contentType = firstImage.ContentType;
-
-// MIME type (e.g. "image/jpeg", "image/png")
-string mimeContentType = firstImage.ContentMimeType;
-
-// Creating Image class instance from the content
-using (MemoryStream imageStream = new MemoryStream(firstImage.Content))
-{
-    Image image = Image.FromStream(imageStream);
-}
-
-
-// HTML & CSS
-
-// All XHTML files in the book (file name is the key)
-Dictionary<string, EpubTextContentFile> htmlFiles = bookContent.Html;
-
-// All CSS files in the book (file name is the key)
-Dictionary<string, EpubTextContentFile> cssFiles = bookContent.Css;
-
-// Entire HTML content of the book
-foreach (EpubTextContentFile htmlFile in htmlFiles.Values)
-{
-    string htmlContent = htmlFile.Content;
-}
-
-// All CSS content in the book
-foreach (EpubTextContentFile cssFile in cssFiles.Values)
-{
-    string cssContent = cssFile.Content;
-}
-
-
-// OTHER CONTENT
-
-// All fonts in the book (file name is the key)
-Dictionary<string, EpubByteContentFile> fonts = bookContent.Fonts;
-
-// All files in the book (including HTML, CSS, images, fonts, and other types of files)
-Dictionary<string, EpubContentFile> allFiles = bookContent.AllFiles;
-
-
-// ACCESSING RAW SCHEMA INFORMATION
-
-// EPUB OPF data
-EpubPackage package = epubBook.Schema.Package;
-
-// Enumerating book's contributors
-foreach (EpubMetadataContributor contributor in package.Metadata.Contributors)
-{
-    string contributorName = contributor.Contributor;
-    string contributorRole = contributor.Role;
-}
-
-// EPUB NCX data
-EpubNavigation navigation = epubBook.Schema.Navigation;
-
-// Enumerating NCX metadata
-foreach (EpubNavigationHeadMeta meta in navigation.Head)
-{
-    string metadataItemName = meta.Name;
-    string metadataItemContent = meta.Content;
-}
-```
+This project is provided under the [MIT License](https://github.com/Didstopia/EpubReader/blob/master/LICENSE.md).
