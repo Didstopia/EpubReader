@@ -26,7 +26,7 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
-		description = A .NET Standard library for reading ePub files.
-		version = 1.0.0-beta4
+		description = @A .NET Standard 2.0 library for reading ePub files.\n\nThis is a modified fork based on EpubReader by versfx. For more information see the project page.
+		version = 1.0.0-beta5
 	EndGlobalSection
 EndGlobal

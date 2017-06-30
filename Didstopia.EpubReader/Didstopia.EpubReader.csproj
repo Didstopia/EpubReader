@@ -6,21 +6,22 @@
     <RootNamespace>Didstopia.EpubReader</RootNamespace>
     <AssemblyName>Didstopia.EpubReader</AssemblyName>
     <PackageId>Didstopia.EpubReader</PackageId>
-    <PackageVersion>1.0.0-beta4</PackageVersion>
-    <Authors>Didstopia</Authors>
+    <PackageVersion>1.0.0-beta5</PackageVersion>
+    <Authors>Didstopia, versfx</Authors>
     <DevelopmentDependency>true</DevelopmentDependency>
     <NeutralLanguage>en-US</NeutralLanguage>
     <PackageLicenseUrl>https://github.com/Didstopia/EpubReader/blob/master/LICENSE.md</PackageLicenseUrl>
     <Owners>Didstopia</Owners>
     <PackageProjectUrl>https://github.com/Didstopia/EpubReader</PackageProjectUrl>
-    <PackageReleaseNotes>Migrated to a .NET Standard library.</PackageReleaseNotes>
+    <PackageReleaseNotes>Fixed potential dependency cycle issues with .NET Standard.
+Updated license and readme.</PackageReleaseNotes>
     <Summary>A .NET Standard library for reading ePub files.</Summary>
     <PackageTags>epub reader .net standard library</PackageTags>
     <Title>ePub Reader for .NET Standard</Title>
-    <Description>A .NET Standard library for reading ePub files.
+    <Description>A .NET Standard 2.0 library for reading ePub files.
 
-NOTE: This is an extensively modified fork of Didstopia.EpubReader (https://github.com/versfx/EpubReader). This fork aims to be a cross-platform and modern library, using latest technologies and techniques, such as .NET Standard.</Description>
-    <ReleaseVersion>1.0.0-beta4</ReleaseVersion>
+This is a modified fork based on EpubReader by versfx. For more information see the project page.</Description>
+    <ReleaseVersion>1.0.0-beta5</ReleaseVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
@@ -28,7 +29,6 @@ NOTE: This is an extensively modified fork of Didstopia.EpubReader (https://gith
     <DebugType>pdbonly</DebugType>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="NuGet.Build.Packaging" Version="0.1.323" />
     <PackageReference Include="CoreCompat.System.Drawing.v2" Version="5.2.0-preview1-r131" />
   </ItemGroup>
 </Project>
