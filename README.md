@@ -22,3 +22,4 @@ See the [original project's README.md](https://github.com/versfx/EpubReader/blob
 ## Licenses
 
 This project is provided under the [MIT License](https://github.com/Didstopia/EpubReader/blob/master/LICENSE.md).
+
